@@ -2,16 +2,16 @@
 #define SQUARINGWIDGET_H
 
 
-//#include <QWidget>
-//#include <QLabel>
-//#include <QLineEdit>
-//#include <QPushButton>
-//#include <QVBoxLayout>
-//#include <QHBoxLayout>
-//#include <QMessageBox>
-//#include <QValidator>
+#include <QWidget>
+#include <QObject>
+#include <QTextCodec>
+#include <QFrame>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QValidator>
 
-#include <QtWidgets>
+//#include <QtWidgets>
 class SquaringWidget : public QWidget //
 {
     Q_OBJECT // макрос Qt, обеспечивающий корректное создание сигналов и слотов
@@ -27,6 +27,8 @@ protected:
     QLineEdit *outputEdit; // строчный редактор вывода
     QPushButton *resetButton; // кнопка Сброса
     QPushButton *exitButton; // кнопка Выход
+    bool isOk; // Состояние (ок, не ок)
+
 public slots:
     void begin(); // метод начальной настройки интерфейса
     void calc(); // метод реализации вычислений
@@ -35,10 +37,8 @@ public slots:
 class StrValidator : public QValidator // класс компонента проверки ввода
 {
 public:
-    StrValidator(QObject *parent):QValidator(parent){}
-    virtual State validate(QString &str,int &pos)const
-    {
-        return Acceptable; // метод всегда принимает вводимую строку
-    }
+    StrValidator(QObject *parent);
+    virtual State validate(QString &str,int &pos) const;
+    bool getState();
 };
 #endif // SQUARINGWIDGET_H
