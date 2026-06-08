@@ -2,7 +2,11 @@
 #define AREA_H
 
 #include "Figura.h"
-#include <QtWidgets>
+#include <QWidget>
+#include <QPaintEvent>
+#include <QTimerEvent>
+#include <QShowEvent>
+#include <QHideEvent>
 
 class Area : public QWidget
 {
@@ -11,14 +15,14 @@ class Area : public QWidget
 public:
     Area(QWidget *parent = nullptr);
     ~Area();
-    MyLine *myline;
-    MyRect *myrect;
+    MyLine *myline; // фигура "линия"
+    MyRect *myrect; // фигура "прямоугольник"
 protected:
     //обработчики событий
-    void paintEvent(QPaintEvent *event);
-    void timerEvent(QTimerEvent *event);
-    void showEvent(QShowEvent *event);
-    void hideEvent(QHideEvent *event);
+    void paintEvent(QPaintEvent *event); // отрисовка содержимого виджета
+    void timerEvent(QTimerEvent *event); // обработка срабатывания таймера анимации
+    void showEvent(QShowEvent *event); // запуск таймера при отображении виджета
+    void hideEvent(QHideEvent *event); // остановка таймера при скрытии виджета
 };
 
 #endif // AREA_H
