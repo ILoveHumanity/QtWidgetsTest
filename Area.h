@@ -10,13 +10,14 @@
 
 class Area : public QWidget
 {
+private:
     int myTimer; // идентификатор таймера
     float alpha; // угол поворота
+    MyLine myline; // фигура "линия"
+    MyRect myrect; // фигура "прямоугольник"
 public:
     Area(QWidget *parent = nullptr);
-    ~Area();
-    MyLine *myline; // фигура "линия"
-    MyRect *myrect; // фигура "прямоугольник"
+    ~Area() = default;
 protected:
     //обработчики событий
     void paintEvent(QPaintEvent *event); // отрисовка содержимого виджета
